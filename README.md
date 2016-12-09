@@ -1,7 +1,15 @@
 # WebViewShareText
 仿好奇心日报重写系统分享功能。webview与h5通过js交互
 
+#实现功能
+* 1，webview长按选中文字，获取到选中文字
+* 2，重写长按后弹出的分享菜单
+* 3，webview与h5的js交互
+* 4，把选中的文字放入到一个图片模板中，作为一个图片分享出去（待做）
 
+
+#效果图
+![image](https://github.com/qiushi123/WebViewShareText/blob/master/images/001.png?raw=true)
 
 
 
@@ -108,4 +116,45 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
+```
+
+#下面简单贴出h5代码
+##通过webview与js的交互获取选中的文字
+##主要是通过window.getSelection().toString()获取到选中的内容
+```xml
+<!DOCTYPE html>
+<html>
+<head>
+    <title>webview长按分享</title>
+    <!--这个js方法让h5工程师加到网页中-->
+    <script type="text/javascript">
+    function getValue(){
+    return window.getSelection().toString();
+    }
+
+    </script>
+</head>
+<body>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面，你可以在自己的界面里做图片模板分享</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+<p>我是仿好奇心日报，长按webview文字，调用自己的分享界面</p>
+</body>
+</html>
 ```
