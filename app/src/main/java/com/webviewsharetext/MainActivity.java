@@ -30,6 +30,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
     MenuItem.OnMenuItemClickListener handler;
+    private ActionMode mActionMode = null;
 
     String TAG = MainActivity.class.getName();
 
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                         //这里调取你自己的分享界面
                         Log.i("you click", "分享");
                         webText();
+                        if (mActionMode != null) {
+                            mActionMode.finish();
+                            webView.clearFocus();//移除高亮显示,如果不移除在三星s6手机上会崩溃
+                        }
                         break;
                     case 2:
                         Log.i("you click", "下载");
@@ -90,12 +95,21 @@ public class MainActivity extends AppCompatActivity {
     //重写弹出Contextual Action Bar
     @Override
     public void onActionModeStarted(ActionMode mode) {
-        Menu menu = mode.getMenu();
-        menu.clear();
-        menu.add(0, 1, 0, "我的分享").setOnMenuItemClickListener(handler);
-        menu.add(0, 2, 0, "我的下载").setOnMenuItemClickListener(handler);
+        if (mActionMode == null) {
+            mActionMode = mode;
+            Menu menu = mode.getMenu();
+            menu.clear();
+            menu.add(0, 1, 0, "我的分享").setOnMenuItemClickListener(handler);
+            menu.add(0, 2, 0, "我的下载").setOnMenuItemClickListener(handler);
+        }
         super.onActionModeStarted(mode);
     }
 
-}
+    @Override
+    public void onActionModeFinished(ActionMode mode) {
+        mActionMode = null;
+        webView.clearFocus();//移除高亮显示,如果不移除在三星s6手机上会崩溃
+        super.onActionModeFinished(mode);
+    }
 
+}
